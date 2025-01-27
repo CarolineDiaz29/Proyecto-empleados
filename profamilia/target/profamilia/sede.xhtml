@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="recursos/css/style.css" />
+    <link rel="icon" href="recursos/img/logo.png" type="image/png" />
+    <title>Profamilia</title>
+</h:head>
+<h:body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="recursos/img/logo-nuevo-profamilia-verde.png" alt="Logo Profamilia" />
+        </div>
+        <div class="buttons">
+            <h:link value="Registrar" outcome="/registrarS.xhtml" />
+            <h:link value="Volver" outcome="/index.xhtml" />
+        </div>
+    </header>
+    <section>
+        <h2>Lista de Sedes</h2>
+        <h:dataTable value="#{sedeController.sedes}" var="sede" border="1">
+            <h:column>
+                <f:facet name="header">Nombre Sede</f:facet>
+                <h:outputText value="#{sede.nombre}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ciudad</f:facet>
+                <h:outputText value="#{sede.ciudad}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dirección</f:facet>
+                <h:outputText value="#{sede.direccion}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Teléfono</f:facet>
+                <h:outputText value="#{sede.telefono}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Capacidad</f:facet>
+                <h:outputText value="#{sede.capacidad}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                <h:link value="Editar" outcome="/modificarS.xhtml">
+                    <img src="recursos/img/icon-edit.png" width="20" alt="Editar" />
+                    <f:param name="id" value="#{sede.idsede}" />
+                </h:link>
+            </h:column>
+        </h:dataTable>
+        <h:panelGroup rendered="#{empty sedeController.sedes}">
+            <h:outputText value="No se encontraron sedes registradas." />
+        </h:panelGroup>
+    </section>
+</h:body>
+</html>
