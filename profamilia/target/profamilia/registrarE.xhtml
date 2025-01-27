@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="recursos/css/style.css" />
+    <link rel="icon" href="recursos/img/logo.png" type="image/png" />
+    <title>Profamilia</title>
+</h:head>
+<h:body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="recursos/img/logo-nuevo-profamilia-verde.png" alt="Logo Profamilia" />
+        </div>
+        <div class="buttons">
+            <h:link value="Volver" outcome="/empleados.xhtml" />
+        </div>
+    </header>
+
+    <section>
+        <h2>Registro de Empleados</h2>
+        <h:form>
+            <div>
+                <h:outputLabel for="idempleado" value="Documento" />
+                <h:inputText id="idempleado" value="#{empleadoController.empleado.idempleado}" required="true" >
+                    <f:validateLength minimum="1" />
+                    <f:convertNumber integerOnly="true" />
+                </h:inputText>
+            </div>
+
+            <div>
+                <h:outputLabel for="nombre-empleado" value="Nombre Completo" />
+                <h:inputText id="nombre-empleado" value="#{empleadoController.empleado.nombre}" required="true" />
+            </div>
+
+            <div>
+                <h:outputLabel for="edad" value="Edad" />
+                <h:inputText id="edad" value="#{empleadoController.empleado.edad}" required="true">
+                    <f:validateLongRange minimum="18" maximum="100" />
+                </h:inputText>
+            </div>
+
+            <div>
+                <h:outputLabel for="telefono" value="Teléfono" />
+                <h:inputText id="telefono" value="#{empleadoController.empleado.telefono}" required="true">
+                    <f:validateLength minimum="10" maximum="10" />
+                </h:inputText>
+            </div>
+
+            <div>
+                <h:outputLabel for="cargo" value="Cargo" />
+                <h:inputText id="cargo" value="#{empleadoController.empleado.cargo}" required="true" />
+            </div>
+
+            <div>
+                <h:outputLabel for="salario" value="salario" />
+                <h:inputText id="salario" value="#{empleadoController.empleado.salario}" required="true">
+                    <f:convertNumber type="currency" currencySymbol="$" />
+                </h:inputText>
+            </div>
+
+            <div>
+                <h:outputLabel for="idsede" value="Sede" />
+                <h:selectOneMenu id="idsede" value="#{empleadoController.empleado.sede.idsede}" required="true">
+                    <f:selectItem itemLabel="Seleccione una sede" itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItems value="#{empleadoController.listaSedes}"
+                                   var="sede"
+                                   itemValue="#{sede.idsede}"
+                                   itemLabel="#{sede.nombre}" />
+                </h:selectOneMenu>
+            </div>
+
+            <h:commandButton value="Registrar Empleado" action="#{empleadoController.crearempleado}" />
+        </h:form>
+    </section>
+</h:body>
+</html>
