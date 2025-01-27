@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="recursos/css/style.css" />
+    <link rel="icon" href="recursos/img/logo.png" type="image/png" />
+    <title>Profamilia</title>
+</h:head>
+<h:body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="recursos/img/logo-nuevo-profamilia-verde.png" alt="Logo Profamilia" />
+        </div>
+        <div class="buttons">
+            <h:link value="Volver" outcome="/empleados.xhtml" />
+        </div>
+    </header>
+    <section>
+        <h1>Empleados por Sede</h1>
+        <h:messages id="mensajes" globalOnly="true" layout="table" style="color: #0056b3;" />
+        <div>
+            <h:form>
+                <h:outputLabel for="id_sede" value="Sede" />
+                <h:selectOneMenu id="id_sede" value="#{empleadoController.empleado.sede.idsede}" required="true">
+                    <f:selectItem itemLabel="Seleccione una sede" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{empleadoController.listaSedes}"
+                                   var="sede"
+                                   itemValue="#{sede.idsede}"
+                                   itemLabel="#{sede.nombre}" />
+                </h:selectOneMenu>
+                <h:commandButton value="Ver Resultado" action="#{empleadoController.consultarEmpleadosPorSede}" styleClass="button">
+                    <f:ajax execute="@form" render="mensajes empleadosTable" />
+                </h:commandButton>
+            </h:form>
+        </div>
+        <h2>Lista de Empleados</h2>
+        <h:dataTable id="empleadosTable" value="#{empleadoController.empleados}" var="emp" border="1">
+        <h:column>
+                <f:facet name="header">Documento</f:facet>
+                <h:outputText value="#{emp.idempleado}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                <h:outputText value="#{emp.nombre}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha</f:facet>
+                <h:outputText value="#{emp.fecha}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Edad</f:facet>
+                <h:outputText value="#{emp.edad}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Teléfono</f:facet>
+                <h:outputText value="#{emp.telefono}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cargo</f:facet>
+                <h:outputText value="#{emp.cargo}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Salario</f:facet>
+                <h:outputText value="#{emp.salario}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                <h:link outcome="/modificarE.xhtml">
+                    <img src="recursos/img/icon-edit.png" width="20" alt="Editar" />
+                    <f:param name="idempleado" value="#{emp.idempleado}" />
+                </h:link>
+            </h:column>
+        </h:dataTable>
+    </section>
+</h:body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+              http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+              version="2.3">
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>empleados</from-outcome>
+            <to-view-id>/empleados.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>registrarEmpleado</from-outcome>
+            <to-view-id>/registrarE.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>consultarEmpleados</from-outcome>
+            <to-view-id>/consultar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modificarEmpleado</from-outcome>
+            <to-view-id>/modificarE.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>sedes</from-outcome>
+            <to-view-id>/sede.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>registrarSede</from-outcome>
+            <to-view-id>/registrarS.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modificarSede</from-outcome>
+            <to-view-id>/modificarS.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
