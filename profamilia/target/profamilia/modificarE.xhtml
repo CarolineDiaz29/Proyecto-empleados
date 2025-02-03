@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="recursos/css/style.css" />
+    <link rel="icon" href="recursos/img/logo.png" type="image/png" />
+    <title>Profamilia</title>
+</h:head>
+<f:metadata>
+    <f:viewParam name="idempleado" value="#{empleadoController.empleado.idempleado}"/>
+    <f:event type="preRenderView" listener="#{empleadoController.cargarEmpleado(empleadoController.empleado.idempleado)}"/>
+</f:metadata>
+<h:body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="recursos/img/logo-nuevo-profamilia-verde.png" alt="Logo Profamilia" />
+        </div>
+        <div class="buttons">
+            <h:link value="Volver" outcome="/consultar.xhtml" />
+        </div>
+    </header>
+    <section>
+        <h2>Modificar Empleado</h2>
+        <h:form id="modificar-empleados">
+            <h:inputHidden value="#{empleadoController.empleado.idempleado}" />
+            <div>
+                <h:outputLabel for="idempleado" value="Documento" />
+                <h:inputText id="idempleado" value="#{empleadoController.empleado.idempleado}" readonly="true"
+                             styleClass="readonly-field" />
+            </div>
+            <div>
+                <h:outputLabel for="nombre-empleado" value="Nombre Completo" />
+                <h:inputText id="nombre-empleado" value="#{empleadoController.empleado.nombre}" required="true" />
+            </div>
+            <div>
+                <h:outputLabel for="edad" value="Edad" />
+                <h:inputText id="edad" value="#{empleadoController.empleado.edad}" required="true">
+                    <f:convertNumber integerOnly="true" />
+                </h:inputText>
+            </div>
+            <div>
+                <h:outputLabel for="telefono" value="Teléfono" />
+                <h:inputText id="telefono" value="#{empleadoController.empleado.telefono}" required="true">
+                    <f:convertNumber integerOnly="true" />
+                </h:inputText>
+            </div>
+            <div>
+                <h:outputLabel for="cargo" value="Cargo" />
+                <h:inputText id="cargo" value="#{empleadoController.empleado.cargo}" required="true" />
+            </div>
+            <div>
+                <h:outputLabel for="sueldo" value="Sueldo" />
+                <h:inputText id="sueldo" value="#{empleadoController.empleado.salario}" required="true">
+                    <f:convertNumber integerOnly="true" />
+                </h:inputText>
+            </div>
+            <div>
+                <h:outputLabel for="id-sede" value="Sede" />
+                <h:selectOneMenu id="id-sede" value="#{empleadoController.empleado.sede.idsede}" required="true">
+                    <f:selectItems value="#{empleadoController.listaSedes}"
+                                   var="sede"
+                                   itemValue="#{sede.idsede}"
+                                   itemLabel="#{sede.nombre}" />
+                </h:selectOneMenu>
+            </div>
+            <h:commandButton value="Guardar Cambios" action="#{empleadoController.editarEmpleado}">
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+        </h:form>
+    </section>
+</h:body>
+</html>
